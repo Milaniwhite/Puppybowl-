@@ -10,6 +10,7 @@
     "dev": "vite"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "vite": "^6.0.11"
   },
   "name": "puppybowl-",
