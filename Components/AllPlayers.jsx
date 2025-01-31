@@ -1,4 +1,4 @@
-import { GetAllPlayers } from "./API/Index";
+import { GetAllPlayers , deletePlayer } from "./API/Index";
 import { useState, useEffect } from "react";
 import React from "react";
 import { useNavigate } from "react-router";
@@ -8,21 +8,29 @@ function AllPlayers() {
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useState("");
   const navigate=useNavigate();
+ 
 
-  // Fetch players once the component mounts
-  useEffect(() => {
-    async function GetPlayers() {
-      const response = await GetAllPlayers();
-      if (response.success) {
-        setPlayers(response.data.players);
-      } else {
-        setError(response.error);
-      }
+  async function GetPlayers() {
+    const response = await GetAllPlayers();
+    if (response.success) {
+      setPlayers(response.data.players);
+    } else {
+      setError(response.error);
     }
+  }
+  
+  useEffect(() => {
+    
     GetPlayers();
   }, []);
 
-  // Filter players based on searchParams
+  const handleDelete = async (event,id) =>{
+    event.preventDefault()
+    await deletePlayer(id)
+    GetPlayers();
+  }
+
+  
   const filteredPlayers = searchParams
     ? players.filter((player) =>
         player.name.toLowerCase().includes(searchParams.toLowerCase())
@@ -59,11 +67,17 @@ function AllPlayers() {
                 {/* Display additional player details here */}
                 {/* <p>{player.details}</p> */}
                 <button
-                  className="deleteBtn"
+                
                   onClick={() => navigate(`/players/${player.id}`)}
                 >
                   See Details
                 </button>
+                <button
+                
+                onClick={(event) => handleDelete(event,player.id)}
+              >
+                Delete
+              </button>
               </div>
             );
           })}

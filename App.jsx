@@ -1,4 +1,4 @@
-import { BrowserRouter ,Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AllPlayers from './Components/AllPlayers.jsx';
 import SinglePlayer from './Components/SinglePlayer.jsx';
 import Navbar from './Components/NavBar.jsx'; 
@@ -10,10 +10,17 @@ function App() {
       <Navbar />  
 
       <Routes>
+      
         <Route path="/" element={<AllPlayers />} />
+        
+        
         <Route path="/players/:id" element={<SinglePlayer />} />
+        
+        
+        <Route path="/AllPlayers" element={<AllPlayers />} />
       </Routes>
     </BrowserRouter>
   );
 }
+
 export default App;

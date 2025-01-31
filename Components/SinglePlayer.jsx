@@ -5,20 +5,20 @@ import {useState,useEffect} from "react";
 function SinglePlayer() {
   const [selectedPlayer , setSelectedPlayer] =useState("");
   const { id } = useParams();  
-
+  const [error, setError] = useState(null);
   useEffect(() => {
     async function Players() {
-        if (id) {  // Ensure 'id' is available before making the API call
+        if (id) {  
             const response = await SinglePlayers(id);
             if (response.success) {
                 setSelectedPlayer(response.data.player);
             } else {
-                setError(response.error);  // You might need to define setError
+                setError(response.error);  
             }
         }
     }
     Players();
-}, [id]);  // Include 'id' in the dependency array
+}, [id]);  
 
   return (
     <div>
@@ -32,4 +32,6 @@ function SinglePlayer() {
     </div>
   );
 }
+
+
 export default SinglePlayer;

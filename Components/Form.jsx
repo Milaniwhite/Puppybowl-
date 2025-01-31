@@ -5,6 +5,7 @@ const Form = () => {
     const [name, setName] = useState("");
     const [breed, setBreed] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [fetchToggle, setFetchToggle] = useState(false);
     async function handleSubmit(e) {
         e.preventDefault();
         const result = await addPlayer(name,breed,imageUrl);

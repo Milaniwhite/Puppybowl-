@@ -30,6 +30,20 @@ export async function addPlayer(name,breed,imageUrl) {
             body: JSON.stringify({name,breed,imageUrl})
         });
         const result = await response.json();
+        console.log(result)
+        return result;
+    } catch (error) {
+        console.error(error);
+    }
+}
+export async function deletePlayer(id) {
+    try {
+        const response = await fetch (`${API}/${id}`, {
+            method: "DELETE",
+
+        });
+        const result = await response.json();
+        console.log(result)
         return result;
     } catch (error) {
         console.error(error);

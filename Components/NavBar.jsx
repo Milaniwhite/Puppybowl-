@@ -11,9 +11,7 @@ function Navbar() {
           <li>
             <Link to="/AllPlayers">All Players</Link>
           </li>
-          <li>
-            <Link to="/players/2">Player 2</Link>
-          </li>
+          
         </ul>
       </nav>
     );
